@@ -12,3 +12,20 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip = input('Введите ip адрес в формате x.x.x.x: ')
+
+octet_list = ip.split('.')
+
+first_octet = int(octet_list[0])
+
+if (first_octet > 0) and (first_octet < 223):
+   print('{} - Это unicast'.format(ip))
+elif (first_octet > 224) and (first_octet < 239):
+   print('{} - Это multicast'.format(ip))
+elif (int(octet_list[0]) == 255) and (int(octet_list[1]) == 255) and (int(octet_list[2]) == 255) and (int(octet_list[3]) == 255):
+   print('{} - Это local broadcast'.format(ip))
+elif (int(octet_list[0]) == 0) and (int(octet_list[1]) == 0) and (int(octet_list[2]) == 0) and (int(octet_list[3]) == 0):
+   print('{} - Это local broadcast'.format(ip))
+else: 
+   print('{} - Это unused'.format(ip))
