@@ -30,3 +30,34 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip_str = input('Введите ip адрес в формате xxx.xxx.xxx.xxx/yy:')
+
+template = '''
+Network:
+{0:<10} {1:<10} {2:<10} {3:<10}
+{0:<10b} {1:<10b} {2:<10b} {3:<10b}
+
+
+Mask:
+/{4:}
+{5:<10} {6:<10} {7:<10} {8:<10}
+{5:<10b} {6:<10b} {7:<10b} {8:<10b}
+'''
+
+ip = ip_str.split('.')
+ 
+temp = ip[3].split('/')
+mask = int(temp[1])
+ip[3] = temp[0]
+
+mask_bin = "1" * mask + "0" * (32-mask)
+
+octet = []
+octet.append(int(mask_bin[0:8],2)) 
+octet.append(int(mask_bin[8:16],2))
+octet.append(int(mask_bin[16:24],2))
+octet.append(int(mask_bin[24:32],2))
+
+print(template.format(int(ip[0]), int(ip[1]), int(ip[2]), int(ip[3]), mask, int(octet[0]), int(octet[1]), int(octet[2]), int(octet[3])))
+#print(template.format(*ip_list, mask, *octet))

@@ -17,4 +17,13 @@ Outbound Interface    FastEthernet0/0
 проверять результат.
 """
 
+l1 = ['Prefix', 'AD/Metric', 'Next-Hop', 'Last update', 'Outbound Interface']
+
 ospf_route = "      10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0"
+
+l2 = (ospf_route.strip().replace('[','').replace(']','').replace('via ','').replace(',','')).split()
+
+d1 = dict(zip(l1,l2))
+
+for key in d1:
+    print('{:<22}{}'.format(key, d1[key]))

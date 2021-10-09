@@ -43,3 +43,38 @@ london_co = {
         "routing": True,
     },
 }
+
+# Составляем список из имен устройств
+devs = []
+for key in london_co:
+    devs.append(key)
+
+dev_name = input('Введите имя устройства из существующего списка [{}]: '.format(' '.join(devs)))
+
+# Проверяем правильность ввода имени устройства
+valid = 0
+for key in london_co:
+    if key == dev_name:
+        valid = 1
+
+props = []
+
+if valid == 0:
+    print('Нет такого устройства')
+    raise SystemExit    
+elif valid == 1:
+    for key in london_co[dev_name]:
+        props.append(key)
+
+dev_prop = input('Введите имя параметра ({}) : '.format(' '.join(props)))
+    
+# Проверка ввода правильного параметра устройства
+valid = 0
+for key in props:
+    if key == dev_prop:
+        valid = 1
+
+if valid == 1:
+    print(london_co[dev_name][dev_prop.lower()])
+else:
+    print('Такого параметра нет')

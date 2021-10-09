@@ -50,3 +50,16 @@ london_co = {
         "routing": True,
     },
 }
+
+dev_name = input('Введите имя устройства: ')
+
+#props = []
+props =''
+for key in london_co[dev_name]:
+    #props.append(key)
+    props += ' ' + key
+
+#dev_prop = input('Введите название свойства устройства ({}) : '.format(' '.join(props)))
+dev_prop = input('Введите название свойства устройства ({}) : '.format(props.strip()))
+
+print(london_co[dev_name][dev_prop])
